@@ -1,0 +1,23 @@
+#!/bin/bash
+#   Version 0.1: sha256 hash checker
+#   by :] (colonEndBracket)
+if [ -z "$1" ]; then
+    echo "Usage: sumcheck [file] [checksum]"
+    exit 1
+fi
+
+SUM=$2
+OUT=$(shasum $1)
+if [ "${OUT:0:40}" == "$SUM" ]
+then
+    echo ".................."
+    echo "..Good Checksum!.."
+    echo ".................."
+else
+    echo "!!!!!!!!!!!!!!!!"
+    echo "!!Bad Checksum!!"
+    echo "!!!!!!!!!!!!!!!!"
+fi
+echo "file: $1"
+echo "your input:       $SUM"
+echo "generated sha256: ${OUT:0:40}"
